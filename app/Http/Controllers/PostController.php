@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
       $posts = \App\Models\Post::all();
 
@@ -31,10 +32,19 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $title = $request->input("title");
-        $content = $request->input("content");
+        $post = new Post;
+        $post->Title = $request->input("title");
+        $post->Content = $request->input("content");
+        $post->Slug = Str::slug($post->Title, "-");
+        $post->Active = true;
 
-        dd( $title , $content);
+        $post->save();
+
+        $request->session()->flash("status", "Post was created ! ");
+
+       // return redirect()->route("posts.show", ["post" => $post->id]);
+        return redirect()->route("posts.index");
+
     }
 
     /**
@@ -42,10 +52,8 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        $post = \App\Models\Post::find($id);
+        $post = Post::find($id);
         return view("posts.show", ["post" => $post ]);
-
-
     }
 
     /**

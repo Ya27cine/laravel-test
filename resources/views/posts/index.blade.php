@@ -2,6 +2,12 @@
 
 @section('content')
 
+    @if (session()->has("status"))
+        <h2 style="color: green">
+            {{ session()->get("status") }}
+        </h2>
+    @endif
+
     <h1>List of Posts : </h1>
     <ul>
         @forelse ($posts as $post)
