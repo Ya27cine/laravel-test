@@ -7,6 +7,14 @@
     <title>Document</title>
 </head>
 <body>
+ 
+    <ul>
+        <li> <a href="{{route("home",)}}"> Home</a> </li>
+        <li> <a href="{{route("posts.index",)}}"> Posts</a> </li>
+        <li> <a href="{{route("posts.create",)}}"> New Posts</a> </li>
+    </ul>
+
+
     @yield('content')
 </body>
 </html>
