@@ -33,12 +33,13 @@ class PostController extends Controller
      */
     public function store(RequestStorePost $request)
     {
-        $post = new Post;
-        $post->Title = $request->input("title");
-        $post->Content = $request->input("content");
-        $post->Slug = Str::slug($post->Title, "-");
-        $post->Active = true;
-
+        //$data = $request->only(["title", "content"]);
+        $data["Title"] = $request->get("title");
+        $data["Content"] = $request->get("content");
+        $data["Slug"]= Str::slug($data["Title"], "-");
+        $data["Active"] = true;
+      
+        $post = Post::create($data);
         $post->save();
 
         $request->session()->flash("status", "Post was created ! ");
