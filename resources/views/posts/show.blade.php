@@ -3,6 +3,7 @@
 @section('content')
 
     <h1>  Post : </h1>
+    <a href=" {{route("posts.edit", ["post"=>$post]) }} "> Edit</a>
         <li>
             <h2> {{ $post->Title }}</h2>
 

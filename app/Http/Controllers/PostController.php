@@ -63,15 +63,25 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view("posts.edit", ["post" => $post ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(RequestStorePost $request, string $id)
     {
-        //
+        $post = Post::find($id);
+        $post["Title"] = $request->get("title");
+        $post["Content"] = $request->get("content");
+        $post["Slug"]= Str::slug($post["Title"], "-");
+
+        $post->save();
+       
+        $request->session()->flash("status", "Post id ".$id." was updated ! ");
+        // return redirect()->route("posts.show", ["post" => $post->id]);
+         return redirect()->route("posts.index");
     }
 
     /**

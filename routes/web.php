@@ -26,4 +26,4 @@ Route::get('/home', function () {
 
 
 Route::resource("/posts", PostController::class);
-Route::resource("/category", CategoryController::class)->only(['index', 'show']);
+Route::resource("/category", CategoryController::class)->except(['index', 'show']);
