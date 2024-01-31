@@ -18,7 +18,18 @@
             <p>{{ $post->Content}}</p>
         
             <span>{{$post->created_at->diffForHumans() }}</span>
-            </li>     
+            </li> 
+           
+            <!-- Action for edit a post-->
+            <a href=" {{route("posts.edit", ["post"=>$post]) }} "> Edit</a>   
+           
+            <!-- Action for delete a post-->
+            <form method="POST" action="{{ route("posts.destroy", ["post" => $post]) }}">
+                @csrf
+                @method("DELETE")            
+                <button type="submit">Delete</button>
+            </form>
+                 
         @empty
             <p> Not have posts</p>        
         @endforelse
