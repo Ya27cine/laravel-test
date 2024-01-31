@@ -72,7 +72,7 @@ class PostController extends Controller
      */
     public function update(RequestStorePost $request, string $id)
     {
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
         $post["Title"] = $request->get("title");
         $post["Content"] = $request->get("content");
         $post["Slug"]= Str::slug($post["Title"], "-");
@@ -80,7 +80,6 @@ class PostController extends Controller
         $post->save();
        
         $request->session()->flash("status", "Post id ".$id." was updated ! ");
-        // return redirect()->route("posts.show", ["post" => $post->id]);
          return redirect()->route("posts.index");
     }
 
