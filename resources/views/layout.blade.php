@@ -5,16 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    @vite(['resources/js/app.js'])
 </head>
 <body>
- 
-    <ul>
-        <li> <a href="{{route("home",)}}"> Home</a> </li>
-        <li> <a href="{{route("posts.index",)}}"> Posts</a> </li>
-        <li> <a href="{{route("posts.create",)}}"> New Posts</a> </li>
-    </ul>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+        <a class="navbar-brand" href="#">GOLDEN PHONE</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{{route("home",)}}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link"  href="{{route("posts.index",)}}">Posts</a>
+            </li>
+           
+            <li class="nav-item">
+              <a class="nav-link" href="{{route("posts.create",)}}">New Post</a>
+            </li>
+          </ul>
+         
+        </div>
+      </nav>
 
 
-    @yield('content')
+     <div class="container">
+        @yield('content')
+     </div>
+   
 </body>
 </html>

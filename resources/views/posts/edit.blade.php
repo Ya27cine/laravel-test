@@ -9,7 +9,9 @@
 
      @include('posts.form')
 
-    <button type="submit">Edit</button>
+    <div class="d-grid mt-2">
+        <button class="btn btn-danger btn-block" type="submit">Edit</button>
+    </div>
 </form>
     
 @endsection
