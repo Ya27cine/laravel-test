@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,6 @@ Route::get('/home', function () {
 
 Route::resource("/posts", PostController::class);
 Route::resource("/category", CategoryController::class)->except(['index', 'show']);
-Auth::routes();
+Route::resource("/autor", AuthorController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
