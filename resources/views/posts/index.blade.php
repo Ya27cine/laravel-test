@@ -8,12 +8,12 @@
         </h2>
     @endif
 
-    <h1>List of Posts : </h1>
+    <h1 class="text-center">List of Posts : </h1>
     <ul>
         <div class="container">
             <div class="row">
             @forelse ($posts as $post)
-                <div class="col">             
+                <div class="col-md-6 mx-auto">             
                     <div class="card" >
                         <img src="..." class="card-img-top" alt="">
                         <div class="card-body">
@@ -22,7 +22,13 @@
                         </div>
                         <ul class="list-group list-group-flush">
                         <li class="list-group-item">{{$post->created_at->diffForHumans() }}</li>
-                        <li class="list-group-item">A second item</li>
+                        <li class="list-group-item">
+                            @if ($post->comments_count > 0)
+                                <span class="badge bg-success">  {{ $post->comments_count }} comments</span>               
+                            @else
+                                <span class="badge bg-dark">  no comments !</span>                            
+                            @endif                               
+                        </li>
                         </ul>
                         <div class="card-body">
                             <a class="btn btn-warning" href=" {{route("posts.edit", ["post"=>$post]) }} "> Edit</a>   

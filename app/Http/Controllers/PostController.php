@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RequestStorePost;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -12,10 +13,9 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
-    {
-      $posts = \App\Models\Post::all();
+    public function index(Request $request){
 
+      $posts = \App\Models\Post::withCount("comments")->get();
       return view("posts.index", ["posts" => $posts ]);
         
     }

@@ -13,12 +13,7 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        $autour = Author::find(1);
-        $profile = new  Profile();
-
-        $profile->author()->associate($autour)->save();
-
-        dd( $profile );
+       
     }
 
     /**
