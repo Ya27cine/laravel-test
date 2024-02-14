@@ -93,3 +93,15 @@ or ....->whereId(id)  or ...->whereKey(id)
 
  // cree un alias new_comments qui counte le nom de commentaires  > a 2024-....
  > $post = App\Models\Post::withCount(["comments", "comments as new_comments" => function($q){$q->where("created_at", ">", "2024-02-12 22:51:47");}])->get()
+
+
+
+
+
+ >>=========== Model Factory introduction ============================= 
+
+
+  php artisan make:factory PostFactory --model=Post
+
+   >> tinker :
+  App\Models\Post::factory()->count(10)->create();

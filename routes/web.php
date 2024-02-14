@@ -31,3 +31,7 @@ Route::resource("/category", CategoryController::class)->except(['index', 'show'
 Route::resource("/autor", AuthorController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
