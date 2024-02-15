@@ -10,6 +10,15 @@ use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
+
+
+    public function __construct()
+    {
+        // Protecting routes(requiring authentication) 
+       // $this->middleware('auth')->only(['create', 'edit', 'store', 'update', 'destroy']);
+       $this->middleware('auth')->except(['index', 'show']);
+    }
+
     /**
      * Display a listing of the resource.
      */
