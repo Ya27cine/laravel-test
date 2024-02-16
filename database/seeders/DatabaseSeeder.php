@@ -12,11 +12,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        if( $this->command->confirm("You want fresh data base ")){
+            $this->command->call("migrate:fresh");
+            $this->command->info("Data base was redreshed !");
+        }
+
+        $this->call([
+            UsersTableSeeder::class,
+            PostsTableSeeder::class,
+            CommentsSeeder::class
+        ]);
     }
 }

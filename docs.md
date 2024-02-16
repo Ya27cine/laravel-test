@@ -105,3 +105,39 @@ or ....->whereId(id)  or ...->whereKey(id)
 
    >> tinker :
   App\Models\Post::factory()->count(10)->create();
+
+
+
+
+
+============== Protecting routes(requiring authentication) ==================
+
+<$<this->middleware('auth')->only(['create', 'edit', 'store', 'update', 'destroy']);
+$<this->middleware('auth')->except(['index', 'show']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+<<<<<<<<<<<<<<<<<Remplir la base de données (Seeding) 
+
+
+// exec DatabaseSeeder script
+php artisan db:seed
+
+// create seeder
+php artisan make:seed  UsersTableSeeder
+
+// exec Just CommentsSeeder  script
+php artisan db:seed --class=CommentsSeeder
+
+// fresh db + eun seed
+php artisan migrate:fresh  --seed
