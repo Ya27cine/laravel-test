@@ -24,9 +24,29 @@ class PostController extends Controller
      */
     public function index(Request $request){
 
-      $posts = \App\Models\Post::withCount("comments")->get();
-      return view("posts.index", ["posts" => $posts ]);
+      $posts = Post::withCount("comments")->get();
+      return view("posts.index", ["posts" => $posts, "tab"=>"list" ]);
         
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function archive(Request $request){
+
+        $posts = Post::onlyTrashed()->withCount("comments")->get();
+        return view("posts.index", ["posts" => $posts, "tab"=>"archive" ]);
+          
+      }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function all(Request $request){
+
+        $posts = Post::withTrashed()->withCount("comments")->get();
+        return view("posts.index", ["posts" => $posts, "tab"=>"all" ]);
+          
     }
 
     /**

@@ -8,9 +8,25 @@
         </h2>
     @endif
 
-    <h1 class="text-center">List of Posts : </h1>
+
+    
     <ul>
         <div class="container">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link   @if($tab =='list') active @endif" aria-current="page" href="/posts">List</a>
+                </li>
+        
+                <li class="nav-item">
+                  <a class="nav-link  @if($tab =='archive') active @endif" href="/posts/archive">Archive</a>
+                </li>
+        
+                <li class="nav-item">
+                  <a class="nav-link  @if($tab =='all') active @endif" href="/posts/all">All</a>
+                </li>   
+              </ul>
+        
+            <h1 class="text-center">List of Posts : </h1> {{ $posts->count()}} Post(s)
             <div class="row">
             @forelse ($posts as $post)
                 <div class="col-md-6 mx-auto">             

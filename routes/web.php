@@ -25,8 +25,15 @@ Route::get('/home', function () {
 })->name("home");
 
 
+Route::get("/posts/archive", [PostController::class, 'archive']);
+Route::get("/posts/all", [PostController::class, 'all']);
 
 Route::resource("/posts", PostController::class);
+
+
+
+
+
 Route::resource("/category", CategoryController::class)->except(['index', 'show']);
 Route::resource("/autor", AuthorController::class);
 
