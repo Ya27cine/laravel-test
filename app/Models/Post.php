@@ -23,7 +23,7 @@ class Post extends Model
 
         self::deleting( function(Post $post){
 
-           // $post->comments()->delete();
+            $post->comments()->delete();
 
         });
     }

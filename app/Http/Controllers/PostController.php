@@ -24,7 +24,7 @@ class PostController extends Controller
      */
     public function index(Request $request){
 
-      $posts = Post::withCount("comments")->get();
+      $posts = Post::withCount("comments")->orderBy("updated_at", "desc")->get();
       return view("posts.index", ["posts" => $posts, "tab"=>"list" ]);
         
     }
@@ -34,7 +34,7 @@ class PostController extends Controller
      */
     public function archive(Request $request){
 
-        $posts = Post::onlyTrashed()->withCount("comments")->get();
+        $posts = Post::onlyTrashed()->withCount("comments")->orderBy("updated_at")->get();
         return view("posts.index", ["posts" => $posts, "tab"=>"archive" ]);
           
       }
@@ -44,7 +44,7 @@ class PostController extends Controller
      */
     public function all(Request $request){
 
-        $posts = Post::withTrashed()->withCount("comments")->get();
+        $posts = Post::withTrashed()->withCount("comments")->orderBy("updated_at")->get();
         return view("posts.index", ["posts" => $posts, "tab"=>"all" ]);
           
     }
