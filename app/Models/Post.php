@@ -15,4 +15,15 @@ class Post extends Model
     public function comments() : HasMany{
         return $this->hasMany(Comment::class);
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        self::deleting( function(Post $post){
+
+            $post->comments()->delete();
+
+        });
+    }
 }

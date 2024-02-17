@@ -141,3 +141,4 @@ php artisan db:seed --class=CommentsSeeder
 
 // fresh db + eun seed
 php artisan migrate:fresh  --seed
+ 
