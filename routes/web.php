@@ -24,7 +24,7 @@ Route::get('/home', function () {
     return view('home');
 })->name("home");
 
-
+Route::patch("/posts/{id}/restore", [PostController::class, 'restore'])->name("posts.restore");
 Route::get("/posts/archive", [PostController::class, 'archive']);
 Route::get("/posts/all", [PostController::class, 'all']);
 

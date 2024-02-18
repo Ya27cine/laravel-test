@@ -48,11 +48,21 @@
                         </ul>
                         <div class="card-body">
                             <a class="btn btn-warning" href=" {{route("posts.edit", ["post"=>$post]) }} "> Edit</a>   
-                            <form  style="display: inline;" method="POST" action="{{ route("posts.destroy", ["post" => $post]) }}">
-                                @csrf
-                                @method("DELETE")            
-                                <button class="btn btn-danger" type="submit">Delete</button>
-                            </form>
+
+                            @if (!$post->deleted_at)
+                                <form  style="display: inline;" method="POST" action="{{ route("posts.destroy", ["post" => $post]) }}">
+                                    @csrf
+                                    @method("DELETE")            
+                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                </form>
+                            @else
+                                <form  style="display: inline;" method="POST" action="{{ route("posts.restore", ["id" => $post->id]) }}">
+                                    @csrf
+                                    @method("PATCH")            
+                                    <button class="btn btn-success" type="submit">Restore</button>
+                                </form>                               
+                            @endif
+                           
                         </div>
                     </div>    
                 </div>    

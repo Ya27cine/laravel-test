@@ -21,10 +21,17 @@ class Post extends Model
     {
         parent::boot();
 
-        self::deleting( function(Post $post){
+        static::restoring( function(Post $post){
+            $post->comments()->restore();
+        });
+
+
+        static::deleting( function(Post $post){
 
             $post->comments()->delete();
 
         });
+
+        
     }
 }

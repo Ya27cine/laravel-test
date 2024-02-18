@@ -121,4 +121,17 @@ class PostController extends Controller
         $request->session()->flash("status", "Post id ".$id." was deleted ! ");
         return redirect()->route("posts.index");
     }
+
+
+
+    public function restore($id){
+        $post = Post::onlyTrashed()->where('id', $id)->first();
+        
+    
+        $post->restore();
+
+        
+
+        return redirect()->back();
+    }
 }
